@@ -1,14 +1,12 @@
 ---
-title: API Reference
+title: Open-Display API
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - json: Json
+  - javascript: Angularjs
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+ 
 
 includes:
   - errors
@@ -26,143 +24,732 @@ This example API documentation page was created with [Slate](http://github.com/t
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
+# Account
+## update
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+    "RequestData":{
+        "FirstName": "",
+        "LastName": "",
+        "OrganizationName": "",
+        "StreetAddress": "",
+        "City": "",
+        "Country": "",
+        "Lang": "",
+        "Zip": "",
+        "State": "",
+        "PhoneNumber": ""
+        }
 ```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+            }
+        }
 ```
 
-This endpoint retrieves a specific kitten.
+```javascript
+app.controller("SampleController", ["odAccount",
+    var data = {
+        "FirstName": "",
+        "LastName": "",
+        "OrganizationName": "",
+        "StreetAddress": "",
+        "City": "",
+        "Country": "",
+        "Lang": "",
+        "Zip": "",
+        "State": "",
+        "PhoneNumber": ""
+        };
+    odAccount.update(data).then(function(response) {
+        //out put the result in the console
+        console.log(response);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+## updatePassword
 
-### HTTP Request
+```json
+    "RequestData":{
+        "OldPassword": "",
+        "Newpassword1": "",
+        "Newpassword2": ""
+        }
+```
 
-`GET http://example.com/kittens/<ID>`
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+            }
+        }
+```
 
-### URL Parameters
+```javascript
+app.controller("SampleController", ["odAccount",
+    var data = {
+        "OldPassword": "",
+        "Newpassword1": "",
+        "Newpassword2": ""
+        };
+    odAccount.updatePassword(data).then(function(response) {
+        //out put the result in the console
+        console.log(response);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
 
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+## info
 
+```json
+    "RequestData":{ }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+                "Info": {
+                    "UserName": "useremail@domain.com",
+                    "FirstName": "",
+                    "LastName": "",
+                    "OrganizationName": "",
+                    "StreetAddress": "",
+                    "City": "",
+                    "Country": "",
+                    "Lang": "",
+                    "Zip": "",
+                    "State": "",
+                    "PhoneNumber": "",
+                    "EditorTheme": "",
+                    "SupportURL": "",
+                    "Branding": { "CSS": "", "Title": "" },
+                    "Active": "1"
+                },"Stats": {
+                    "DiskSpace": 0,
+                    "DiskSpaceLimit": 5368709120,
+                    "Files": 0,
+                    "FilesLimit": -1,
+                    "Devices": 0,
+                    "DevicesLimit": -1,
+                    "Playlists": 0,
+                    "PlaylistsLimit": -1,
+                    "Slides": 0,
+                    "SlidesLimit": -1,
+                    "Apps": 0,
+                    "AppsLimit": -1,
+                    "SubUsers": 1,
+                    "SubUsersLimit": -1,
+                    "Groups": 0,
+                    "GroupsLimit": 100,
+                    "Domains": 0,
+                    "DomainsLimit": 5,
+                    "Campaign": 0,
+                    "CampaignLimit": 0,
+                    "FileFolders": 0,
+                    "FileFoldersLimit": -1,
+                    "DeviceFolders": 0,
+                    "DeviceFoldersLimit": -1,
+                    "SlideFolders": 0,
+                    "SlideFoldersLimit": -1
+                }
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odAccount",
+    odAccount.info().then(function(response) {
+        //out put the result in the console
+        console.log(response);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+## updateSettings
+
+```json
+    "RequestData":{ "Class": "Main", "Data": {}}
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odAccount",
+    var data = { "Class": "Main", "Data":{ } };
+    odAccount.updateSettings(data).then(function(response) {
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+## settings
+
+```json
+    "RequestData":{ "Class": "Main" }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odAccount",
+    var data = { "Class": "Main" };
+    odAccount.settings(data).then(function(response) {
+        //get the settings of the class Main
+        console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+# Authenticate
+## check
+
+```json
+    "RequestData":{ }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odAuthenticate",
+    odAuthenticate.check().then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+## logout
+
+```json
+    "RequestData":{ }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odAuthenticate",
+    odAuthenticate.logout().then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+# Application
+## create
+
+```json
+    "RequestData":{ 
+        "Name": "", 
+        "AppURL":"", 
+        "AppAbout": "" 
+    }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odApplication",
+    var data = {
+        "Name": "", 
+        "AppURL":"", 
+        "AppAbout": "" };
+    odApplication.create(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+## update
+
+```json
+    "RequestData":{ 
+        "ID": "",
+        "Name": "", 
+        "AppURL":"", 
+        "AppAbout": "" 
+    }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odApplication",
+    var data = {
+        "ID": "",
+        "Name": "", 
+        "AppURL":"", 
+        "AppAbout": ""  };
+    odApplication.update(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+## remove
+
+```json
+    "RequestData":{ 
+        "ID": ""
+    }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odApplication",
+    var data = {
+        "ID": "" };
+    odApplication.remove(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+## list
+
+```json
+    "RequestData":{ }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[
+                    {   
+                        "AppID":"", 
+                        "Groups":[], 
+                        "About":"", 
+                        "Name":"", 
+                        "Default": false, 
+                        "Owner": false, 
+                        "URL":""
+                    }
+                ]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odApplication",
+    odApplication.list().then(function(response) {
+       //list apps in console
+       console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+## devList
+
+```json
+    "RequestData":{ }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[
+                    {   
+                        "ID": "", 
+                        "PrivateKey": "", 
+                        "URL": "", 
+                        "Name":"",
+                        "About":"",
+                        "CreationTime":""
+                    }
+                ]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odApplication",
+    odApplication.devList().then(function(response) {
+       //list apps in console
+       console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+]);
+```
+
+## categories
+## setGroup
+## revokeAccess
+
+# Device
+## create
+## list
+## remove
+## info
+## update
+## setNode
+## rebootReset
+## updateGlobalSettings
+## globalSettings
+
+# DeviceFolders
+## create
+## list
+## remove
+## update
+
+# Files
+## create
+## list
+## remove
+## uploadURL
+## download
+
+# FileFolders
+## create
+## update
+## list
+## remove
+
+# SubUsers
+## create
+## list
+## update
+## remove
+## info
+## updatePassword
+
+# Domains
+## create
+## list
+## remove
+## addUserToDomain
+## removeUserFromDomain
+
+# Groups
+## create
+## list
+## remove
+## addUserToGroup
+## removeUserFromGroup
+## updateItem
+
+# Playlist
+## create
+## list
+## listByDevice
+## remove
+## update
+## info
+## link
+## unLink
+
+# Tags
+## create
+## update
+## list
+
+# Slide
+## create
+## list
+## remove
+## update
+## get
+## resolutions
+## setDir
+## send
+## getSent
+## removeSent
+## importSent
+
+# SlideFolders
+## create
+## update
+## list
+## remove
+
+# Pop
+## create
+## update
+## remove
+## list
+## stats
+
+# Wads
+## create
+## update
+## remove
+## list
+
+# Rights
+## update
+## list
+## values
+
+# Campaign
+## create
+## update
+## remove
+## list
+## copy
+
+# Questions
+## create
+## update
+## remove
+## list
+
+# Log
+## list
+## login
+
+# Feed
+## create
+## update
+## list
+## info
+
+# Wads
+## update
+## remove
+## list
