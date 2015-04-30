@@ -56,13 +56,12 @@ This example API documentation page was created with [Slate](http://github.com/t
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":{
-            }
+            },"ResponseBody": []
         }
 ```
 
 ```javascript
-app.controller("SampleController", ["odAccount",
+app.controller("SampleController", ["odAccount",function(odAccount){
     var data = {
         "FirstName": "",
         "LastName": "",
@@ -85,7 +84,7 @@ app.controller("SampleController", ["odAccount",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 ## updatePassword
@@ -112,13 +111,12 @@ app.controller("SampleController", ["odAccount",
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":{
-            }
+            },"ResponseBody": []
         }
 ```
 
 ```javascript
-app.controller("SampleController", ["odAccount",
+app.controller("SampleController", ["odAccount",function(odAccount){
     var data = {
         "OldPassword": "",
         "Newpassword1": "",
@@ -134,7 +132,7 @@ app.controller("SampleController", ["odAccount",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 ## info
@@ -207,7 +205,7 @@ app.controller("SampleController", ["odAccount",
 ```
 
 ```javascript
-app.controller("SampleController", ["odAccount",
+app.controller("SampleController", ["odAccount",function(odAccount){
     odAccount.info().then(function(response) {
         //out put the result in the console
         console.log(response);
@@ -218,7 +216,7 @@ app.controller("SampleController", ["odAccount",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 ## updateSettings
@@ -241,13 +239,12 @@ app.controller("SampleController", ["odAccount",
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":{
-            }
+            },"ResponseBody": []
         }
 ```
 
 ```javascript
-app.controller("SampleController", ["odAccount",
+app.controller("SampleController", ["odAccount",function(odAccount){
     var data = { "Class": "Main", "Data":{ } };
     odAccount.updateSettings(data).then(function(response) {
     },function(response){
@@ -257,7 +254,7 @@ app.controller("SampleController", ["odAccount",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 ## settings
@@ -280,13 +277,12 @@ app.controller("SampleController", ["odAccount",
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":{
-            }
+            },"ResponseBody": []
         }
 ```
 
 ```javascript
-app.controller("SampleController", ["odAccount",
+app.controller("SampleController", ["odAccount",function(odAccount){
     var data = { "Class": "Main" };
     odAccount.settings(data).then(function(response) {
         //get the settings of the class Main
@@ -298,7 +294,7 @@ app.controller("SampleController", ["odAccount",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 # Authenticate
@@ -322,13 +318,12 @@ app.controller("SampleController", ["odAccount",
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":{
-            }
+            },"ResponseBody": []
         }
 ```
 
 ```javascript
-app.controller("SampleController", ["odAuthenticate",
+app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
     odAuthenticate.check().then(function(response) {
        
     },function(response){
@@ -338,7 +333,7 @@ app.controller("SampleController", ["odAuthenticate",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 ## logout
@@ -361,13 +356,12 @@ app.controller("SampleController", ["odAuthenticate",
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":{
-            }
+            },"ResponseBody": []
         }
 ```
 
 ```javascript
-app.controller("SampleController", ["odAuthenticate",
+app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
     odAuthenticate.logout().then(function(response) {
        
     },function(response){
@@ -377,7 +371,7 @@ app.controller("SampleController", ["odAuthenticate",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 # Application
@@ -405,13 +399,12 @@ app.controller("SampleController", ["odAuthenticate",
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":{
-            }
+            },"ResponseBody": []
         }
 ```
 
 ```javascript
-app.controller("SampleController", ["odApplication",
+app.controller("SampleController", ["odApplication",function(odApplication){
     var data = {
         "Name": "", 
         "AppURL":"", 
@@ -425,7 +418,7 @@ app.controller("SampleController", ["odApplication",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 ## update
@@ -453,13 +446,12 @@ app.controller("SampleController", ["odApplication",
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":{
-            }
+            },"ResponseBody": []
         }
 ```
 
 ```javascript
-app.controller("SampleController", ["odApplication",
+app.controller("SampleController", ["odApplication",function(odApplication){
     var data = {
         "ID": "",
         "Name": "", 
@@ -474,7 +466,7 @@ app.controller("SampleController", ["odApplication",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 ## remove
@@ -499,13 +491,12 @@ app.controller("SampleController", ["odApplication",
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":{
-            }
+            },"ResponseBody": []
         }
 ```
 
 ```javascript
-app.controller("SampleController", ["odApplication",
+app.controller("SampleController", ["odApplication",function(odApplication){
     var data = {
         "ID": "" };
     odApplication.remove(data).then(function(response) {
@@ -517,7 +508,7 @@ app.controller("SampleController", ["odApplication",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 ## list
@@ -555,7 +546,7 @@ app.controller("SampleController", ["odApplication",
 ```
 
 ```javascript
-app.controller("SampleController", ["odApplication",
+app.controller("SampleController", ["odApplication",function(odApplication){
     odApplication.list().then(function(response) {
        //list apps in console
        console.log(response.ResponseBody);
@@ -566,7 +557,7 @@ app.controller("SampleController", ["odApplication",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
 ## devList
@@ -603,7 +594,7 @@ app.controller("SampleController", ["odApplication",
 ```
 
 ```javascript
-app.controller("SampleController", ["odApplication",
+app.controller("SampleController", ["odApplication",function(odApplication){
     odApplication.devList().then(function(response) {
        //list apps in console
        console.log(response.ResponseBody);
@@ -614,19 +605,494 @@ app.controller("SampleController", ["odApplication",
             " Message:"+response.ResponseHead.Message
             );
     }); 
-]);
+}]);
 ```
 
-## categories
 ## setGroup
+
+```json
+    "RequestData":{ "ID": "", "Groups": [] }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odApplication",function(odApplication){
+    var data ={ "ID": "", "Groups": [] };
+    odApplication.setGroup(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
+
 ## revokeAccess
+
+```json
+    "RequestData":{ "ID": "" }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odApplication",function(odApplication){
+    var data = { "ID": "" };
+    odApplication.revokeAccess(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
 
 # Device
 ## create
+
+```json
+    "RequestData":{ 
+        "Key": "", 
+        "Name": "", 
+        "Tree": 0, 
+        "Tags": [] 
+        }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDevice",function(odDevice){
+    var data = { 
+        "Key": "", 
+        "Name": "", 
+        "Tree": 0, 
+        "Tags": [] 
+        };
+    odDevice.create(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## list
+
+```json
+    "RequestData":{ 
+        "ResultsStart":0,
+        "ResultsLimit":25,
+        "Filter":[
+                 { "Key": "Name",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Tags",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Tree",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 }
+              ]
+        }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+                "Count": 0,
+                "Items":[{
+                    "ID": "",
+                    "hl": "",
+                    "Date": "2015-03-24",
+                    "Time": "1427795611",
+                    "Active": "1",
+                    "Name": "",
+                    "TimeStamp": "1429700587",
+                    "DeviceUpTime": 94230,
+                    "Group": null,
+                    "Tags": [ { Name: "" } ],
+                    "Info": {
+                    "Status": {
+                        "InSync": true,
+                        "Restarting": false,
+                        "ClearingDate": false
+                    },
+                    "Info": {
+                            "Width":1280,
+                            "Height":800,
+                            "Time":"Mar 31, 2015 11:53:32 AM",
+                            "UpTime":94230,
+                            "DiskSize":2147483647,
+                            "DiskUsed":40304,
+                            "Ethernet":true,
+                            "Device":"m1008",
+                            "Battery":"",
+                            "AndroidFirmware":"4.2.2",
+                            "IP":"192.168.1.36",
+                            "ThemeID":"1447",
+                            "DNS":"8.8.4.4",
+                            "Gateway":"192.168.1.1",
+                            "Netmask":"255.255.255.0",
+                            "AppVersion":"1717",
+                            "WIFI_MBPS":24,
+                            "WIFI_SSID":"",
+                            "SSOSEvent":false,
+                            "WIFI_Strength":99,
+                            "City":"",
+                            "Country":"",
+                            "Region":""
+                        }
+                    },
+                    "Preview":"",
+                    "Settings":{
+                            "Restart":true,
+                            "DataClear":false,
+                            "AllowOptions":true,
+                            "AllwaysOn":true,
+                            "ShowSyntaxCheck":false,
+                            "ShowBrand":false,
+                            "ScreenOffNoTheme":false,
+                            "SSOS_Trigger":0,
+                            "SSOS_themeid":0,
+                            "Orientation":0,
+                            "Alpha":0,
+                            "DeviceVolume":-1,
+                            "IconControl":"1"
+                    }
+            }]
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDevice",function(odDevice){
+    var data = { 
+        "ResultsStart":0,
+        "ResultsLimit":25,
+        "Filter":[
+                 { "Key": "Name",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Tags",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Tree",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 }
+              ]
+        };
+    odDevice.list(data).then(function(response) {
+       //list device
+       console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## remove
+
+```json
+    "RequestData":{ 
+        "ID": ""
+        }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDevice",function(odDevice){
+    var data = { 
+       "ID": ""
+        };
+    odDevice.remove(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## info
+
+```json
+    "RequestData":{ 
+        "ID": ""
+        }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+                    "ID":"",
+                    "Name": "",
+                    "hl":"",
+                    "Date":"",
+                    "Time":"",
+                    "Active": "",
+                    "Tree": "",
+                    "Playlists":[],
+                    "PlaylistsByNode":[],
+                    "Settings":{
+                            "Restart":true,
+                            "DataClear":false,
+                            "AllowOptions":true,
+                            "AllwaysOn":true,
+                            "ShowSyntaxCheck":false,
+                            "ShowBrand":false,
+                            "ScreenOffNoTheme":false,
+                            "SSOS_Trigger":0,
+                            "SSOS_themeid":0,
+                            "Orientation":0,
+                            "Alpha":0,
+                            "DeviceVolume":-1,
+                            "IconControl":"1"
+                    },
+                    "Info":{
+                        "InSync": true,
+                        "Restarting": false,
+                        "ClearingDate": false
+                    },
+                    "Info": {
+                            "Width":1280,
+                            "Height":800,
+                            "Time":"Mar 31, 2015 11:53:32 AM",
+                            "UpTime":94230,
+                            "DiskSize":2147483647,
+                            "DiskUsed":40304,
+                            "Ethernet":true,
+                            "Device":"m1008",
+                            "Battery":"",
+                            "AndroidFirmware":"4.2.2",
+                            "IP":"192.168.1.36",
+                            "ThemeID":"1447",
+                            "DNS":"8.8.4.4",
+                            "Gateway":"192.168.1.1",
+                            "Netmask":"255.255.255.0",
+                            "AppVersion":"1717",
+                            "WIFI_MBPS":24,
+                            "WIFI_SSID":"",
+                            "SSOSEvent":false,
+                            "WIFI_Strength":99,
+                            "City":"",
+                            "Country":"",
+                            "Region":""
+                        }
+                    }
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDevice",function(odDevice){
+    var data = { 
+       "ID": ""
+        };
+    odDevice.remove(data).then(function(response) {
+       //get device info
+       console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## update
+
+```json
+    "RequestData":{ 
+        "ID": "",
+"Name": "",
+"DeviceVolume": "",
+"SSOS_Trigger": "",
+"SSOS_themeid": "",
+"Alpha": "",
+"Tree": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+"ID": "",
+
+    }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDevice",function(odDevice){
+    var data = { 
+       "ID": ""
+        };
+    odDevice.remove(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## setNode
 ## rebootReset
 ## updateGlobalSettings
