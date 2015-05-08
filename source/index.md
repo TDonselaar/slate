@@ -1033,28 +1033,17 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 ```json
     "RequestData":{ 
         "ID": "",
-"Name": "",
-"DeviceVolume": "",
-"SSOS_Trigger": "",
-"SSOS_themeid": "",
-"Alpha": "",
-"Tree": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-"ID": "",
-
+        "Name": "",
+        "DeviceVolume": "",
+        "SSOS_Trigger": "",
+        "SSOS_themeid": "",
+        "Alpha": "",
+        "Tree": "",
+        "Restart": "",
+        "DataClear": "",
+        "AllowOptions": "",
+        "Orientation": "",
+        "IconControl": ""
     }
 ```
 
@@ -1079,9 +1068,20 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 ```javascript
 app.controller("SampleController", ["odDevice",function(odDevice){
     var data = { 
-       "ID": ""
-        };
-    odDevice.remove(data).then(function(response) {
+        "ID": "",
+        "Name": "",
+        "DeviceVolume": "",
+        "SSOS_Trigger": "",
+        "SSOS_themeid": "",
+        "Alpha": "",
+        "Tree": "",
+        "Restart": "",
+        "DataClear": "",
+        "AllowOptions": "",
+        "Orientation": "",
+        "IconControl": ""
+    };
+    odDevice.update(data).then(function(response) {
        
     },function(response){
         //on error we show it in the console.
@@ -1093,37 +1093,1256 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 }]);
 ```
 
-## setNode
+## setFolder
+
+```json
+    "RequestData":{ "IDS":[] }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDevice",function(odDevice){
+    var data = { "IDS":[] };
+    odDevice.setFolder(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## rebootReset
+
+```json
+    "RequestData":{ "IDS":[], "Reboot": true, "Reset": true }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDevice",function(odDevice){
+    var data = { "IDS":[], "Reboot": true, "Reset": true };
+    odDevice.rebootReset(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## updateGlobalSettings
+
+```json
+    "RequestData":{ 
+                    "CAM_activation":"", 
+                    "CAM_sensitivity":"", 
+                    "CAM_scaninterval":"", 
+                    "SCREEN_powerloss_fade":"", 
+                    "SOUND_volume":"",
+                    "SystemKeycode":""
+                  }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDevice",function(odDevice){
+    var data = { 
+                "CAM_activation":"", 
+                "CAM_sensitivity":"", 
+                "CAM_scaninterval":"", 
+                "SCREEN_powerloss_fade":"", 
+                "SOUND_volume":"",
+                "SystemKeycode":""
+               };
+    odDevice.updateGlobalSettings(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## globalSettings
+
+```json
+    "RequestData":{}
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+                "CAM_activation":0, 
+                "CAM_sensitivity":8, 
+                "CAM_scaninterval":2500, 
+                "SCREEN_powerloss_fade":1, 
+                "SOUND_volume":100, 
+                "SystemKeycode":""
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDevice",function(odDevice){
+    var data = {};
+    odDevice.globalSettings(data).then(function(response) {
+       //get the settings
+       console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
 
 # DeviceFolders
 ## create
+
+```json
+    "RequestData":{ "Name":"", "ParentID":"" }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDeviceFolders",function(odDeviceFolders){
+    var data = { "Name":"", "ParentID":"" };
+    odDeviceFolders.create(data).then(function(response) {
+      
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## list
+
+```json
+    "RequestData":{  }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{
+                    "Node":{
+                        "ID":"",
+                        "ParentID":"",
+                        "Name":"",
+                        "AccountID":"",
+                        "Group":"",
+                        "Domain":""
+                    },"Access":true, 
+                    "Nodes": []
+            }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDeviceFolders",function(odDeviceFolders){
+
+    odDeviceFolders.list().then(function(response) {
+      //list the folder
+      console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## remove
+
+```json
+    "RequestData":{ "ID":"" }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDeviceFolders",function(odDeviceFolders){
+    var data = { "ID":"" };
+    odDeviceFolders.remove(data).then(function(response) {
+      
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## update
 
+```json
+    "RequestData":{ "ID":"", "Name":"", "ParentID":"" }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odDeviceFolders",function(odDeviceFolders){
+    var data = { "ID":"", "Name":"", "ParentID":"" };
+    odDeviceFolders.update(data).then(function(response) {
+      
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 # Files
-## create
 ## list
+
+```json
+    "RequestData":{ 
+        "ResultsStart":0,
+        "ResultsLimit":25,
+        "Filter":[
+                 { "Key": "ID",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Name",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Width",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Height",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Type",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Status",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "TimeStamp",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 }
+              ]
+        }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[{
+                "ID":"",
+                "DID":"",
+                "SubAccountID":"",
+                "Name":"",
+                "Extension":"",
+                "Size":"",
+                "Time":"",
+                "TimeStamp":"",
+                "UnixTimeStamp":"",
+                "Width":"",
+                "Height":"",
+                "Type":"",
+                "Status":"",
+                "Group":[],
+                "StatusCode":"",
+                "Download":"",
+                "URL":"",
+                "Thumbnail":""
+            }]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odFiles",function(odFiles){
+    var data = { 
+        "ResultsStart":0,
+        "ResultsLimit":25,
+        "Filter":[
+                 { "Key": "ID",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Name",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Width",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Height",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Type",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Status",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "TimeStamp",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 }
+              ]
+        };
+    odFiles.update(data).then(function(response) {
+      //show a list of files
+      console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## remove
+
+```json
+    "RequestData":{ "ID":"" }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odFiles",function(odFiles){
+    var data = { "ID":"" };
+    odFiles.remove(data).then(function(response) {
+      
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## uploadURL
-## download
+
+```json
+    "RequestData":{ }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{ 
+                        "URL":"", 
+                        "UI":"" 
+               }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odFiles",function(odFiles){ 
+    odFiles.uploadURL().then(function(response) {
+      //get the upload url or ui
+      console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
 
 # FileFolders
 ## create
+
+```json
+    "RequestData":{"Name": "", "PID":0 }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odFileFolders",function(odFileFolders){ 
+    var data = {"Name": "", "PID":0 };
+    odFileFolders.create(data).then(function(response) {
+      
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## update
+
+```json
+    "RequestData":{"ID":0, "Name": "", "PID":0 }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odFileFolders",function(odFileFolders){ 
+    var data = {"ID":0, "Name": "", "PID":0 };
+    odFileFolders.update(data).then(function(response) {
+      
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## list
+
+```json
+    "RequestData":{}
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[
+                        "Access": true,
+                        "Dirs": [],
+                        "Group": 0,
+                        "ID": "2",
+                        "Name": "test",
+                        "PID": "0"
+            ]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odFileFolders",function(odFileFolders){ 
+
+    odFileFolders.list().then(function(response) {
+      //list dirs
+      console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## remove
+
+```json
+    "RequestData":{ "ID":0 }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odFileFolders",function(odFileFolders){ 
+    var data = { "ID":0 };
+    odFileFolders.remove(data).then(function(response) {
+
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
 
 # SubUsers
 ## create
+
+```json
+    "RequestData":{ 
+                "Username":"", 
+                "Password":"", 
+                "Group":[], 
+                "Domain":[], 
+                "FirstName":"", 
+                "LastName":"", 
+                "OrganizationName":"", 
+                "StreetAddress":"", 
+                "City":"", 
+                "Country":"", 
+                "Lang":"", 
+                "Zip":"", 
+                "State":"", 
+                "PhoneNumber":"", 
+                "Email":""
+               }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odSubUsers",function(odSubUsers){ 
+    var data = { 
+                "Username":"", 
+                "Password":"", 
+                "Group":[], 
+                "Domain":[], 
+                "FirstName":"", 
+                "LastName":"", 
+                "OrganizationName":"", 
+                "StreetAddress":"", 
+                "City":"", 
+                "Country":"", 
+                "Lang":"", 
+                "Zip":"", 
+                "State":"", 
+                "PhoneNumber":"", 
+                "Email":""
+               };
+    odSubUsers.create(data).then(function(response) {
+
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## list
+
+```json
+    "RequestData":{ 
+        "ResultsStart":0,
+        "ResultsLimit":25,
+        "Filter":[
+                 { "Key": "SubAccountID",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Username",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "FirstName",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "LastName",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "OrganizationName",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "StreetAddress",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "City",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Country",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Lang",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Zip",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "State",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "PhoneNumber",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Email",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 }
+              ]
+        }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[
+                    { 
+                    "ID":"", 
+                    "Group": [],
+                    "Domain": [],
+                    "Username": "",
+                    "FirstName": "",
+                    "LastName": "",
+                    "OrganizationName": "",
+                    "StreetAddress": "",
+                    "City": "",
+                    "Country": "",
+                    "Lang": "",
+                    "Zip": "",
+                    "State": "",
+                    "PhoneNumber": "",
+                    "Email": "" 
+                    }
+            ]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odSubUsers",function(odSubUsers){ 
+    var data = { 
+        "ResultsStart":0,
+        "ResultsLimit":25,
+        "Filter":[
+                 { "Key": "SubAccountID",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Username",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "FirstName",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "LastName",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "OrganizationName",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "StreetAddress",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "City",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Country",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Lang",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Zip",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "State",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "PhoneNumber",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 },
+                 { "Key": "Email",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 }
+              ]
+        };
+    odSubUsers.list(data).then(function(response) {
+    //list subusers
+      console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## update
+
+```json
+    "RequestData":{ 
+                "ID": 0,
+                "Username":"", 
+                "Password":"", 
+                "Group":[], 
+                "Domain":[], 
+                "FirstName":"", 
+                "LastName":"", 
+                "OrganizationName":"", 
+                "StreetAddress":"", 
+                "City":"", 
+                "Country":"", 
+                "Lang":"", 
+                "Zip":"", 
+                "State":"", 
+                "PhoneNumber":"", 
+                "Email":""
+               }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odSubUsers",function(odSubUsers){ 
+    var data = { 
+                "ID": 0,
+                "Username":"", 
+                "Password":"", 
+                "Group":[], 
+                "Domain":[], 
+                "FirstName":"", 
+                "LastName":"", 
+                "OrganizationName":"", 
+                "StreetAddress":"", 
+                "City":"", 
+                "Country":"", 
+                "Lang":"", 
+                "Zip":"", 
+                "State":"", 
+                "PhoneNumber":"", 
+                "Email":""
+               };
+    odSubUsers.update(data).then(function(response) {
+
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## remove
+
+
+```json
+    "RequestData":{ "ID": 0 }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odSubUsers",function(odSubUsers){ 
+    var data = { "ID": 0 };
+    odSubUsers.remove(data).then(function(response) {
+
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## info
+
+```json
+    "RequestData":{ "ID": 0 }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":{ 
+                    "ID":"", 
+                    "Group": [],
+                    "Domain": [],
+                    "Username": "",
+                    "FirstName": "",
+                    "LastName": "",
+                    "OrganizationName": "",
+                    "StreetAddress": "",
+                    "City": "",
+                    "Country": "",
+                    "Lang": "",
+                    "Zip": "",
+                    "State": "",
+                    "PhoneNumber": "",
+                    "Email": "" 
+                    }
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odSubUsers",function(odSubUsers){ 
+    var data = { "ID": 0 };
+    odSubUsers.info(data).then(function(response) {
+        //get sub user info
+        console.log(response.ResponseBody);
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 ## updatePassword
+
+
+```json
+    "RequestData":{ "ID": 0, "Password":"" }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odSubUsers",function(odSubUsers){ 
+    var data = { "ID": 0, "Password":"" };
+    odSubUsers.updatePassword(data).then(function(response) {
+
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
 
 # Domains
 ## create
