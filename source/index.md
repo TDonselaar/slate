@@ -1528,7 +1528,7 @@ app.controller("SampleController", ["odDeviceFolders",function(odDeviceFolders){
                     "Download":"",
                     "URL":"",
                     "Thumbnail":""
-                }]
+                }] }
         }
 ```
 
@@ -4122,7 +4122,7 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 ## create
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ Name": "", "PID":0  }
 ```
 
 ```json
@@ -4145,7 +4145,7 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 
 ```javascript
 app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){ 
-    var data = {  };
+    var data = { Name": "", "PID":0 };
     odSlideFolders.create(data).then(function(response) {
 
     },function(response){
@@ -4161,7 +4161,7 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 ## update
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "ID":0, "Name": "", "PID":0 }
 ```
 
 ```json
@@ -4184,8 +4184,8 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 
 ```javascript
 app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){ 
-    var data = {  };
-    odSlideFolders.create(data).then(function(response) {
+    var data = { "ID":0, "Name": "", "PID":0 };
+    odSlideFolders.update(data).then(function(response) {
 
     },function(response){
         //on error we show it in the console.
@@ -4217,15 +4217,23 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":[]
+            },"ResponseBody":[
+                        "Access": true,
+                        "Dirs": [],
+                        "Group": 0,
+                        "ID": "2",
+                        "Name": "test",
+                        "PID": "0"
+            ]
         }
 ```
 
 ```javascript
 app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){ 
     var data = {  };
-    odSlideFolders.create(data).then(function(response) {
-
+    odSlideFolders.list(data).then(function(response) {
+        //list dirs
+        console.log(response.ResponseBody);
     },function(response){
         //on error we show it in the console.
         console.log(
@@ -4240,7 +4248,7 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "ID":0 }
 ```
 
 ```json
@@ -4263,8 +4271,8 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 
 ```javascript
 app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){ 
-    var data = {  };
-    odSlideFolders.create(data).then(function(response) {
+    var data = { "ID":0 };
+    odSlideFolders.remove(data).then(function(response) {
 
     },function(response){
         //on error we show it in the console.
@@ -4280,7 +4288,7 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 ## create
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "Name": "", "FileID": 0, "MinImpressions":0, "TimeLimit": false, "TimeFrom": 0, "TimeTo": 0 }
 ```
 
 ```json
@@ -4303,7 +4311,7 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 
 ```javascript
 app.controller("SampleController", ["odPop",function(odPop){ 
-    var data = {  };
+    var data = { "Name": "", "FileID": 0, "MinImpressions":0, "TimeLimit": false, "TimeFrom": 0, "TimeTo": 0 };
     odPop.create(data).then(function(response) {
 
     },function(response){
@@ -4319,7 +4327,7 @@ app.controller("SampleController", ["odPop",function(odPop){
 ## update
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "ID":0, "Name": "", "MinImpressions":0, "TimeLimit": false, "TimeFrom": 0, "TimeTo": 0 }
 ```
 
 ```json
@@ -4342,8 +4350,8 @@ app.controller("SampleController", ["odPop",function(odPop){
 
 ```javascript
 app.controller("SampleController", ["odPop",function(odPop){ 
-    var data = {  };
-    odPop.create(data).then(function(response) {
+    var data = { "ID":0, "Name": "", "MinImpressions":0, "TimeLimit": false, "TimeFrom": 0, "TimeTo": 0  };
+    odPop.update(data).then(function(response) {
 
     },function(response){
         //on error we show it in the console.
@@ -4358,7 +4366,7 @@ app.controller("SampleController", ["odPop",function(odPop){
 ## remove
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "ID":0 }
 ```
 
 ```json
@@ -4381,8 +4389,8 @@ app.controller("SampleController", ["odPop",function(odPop){
 
 ```javascript
 app.controller("SampleController", ["odPop",function(odPop){ 
-    var data = {  };
-    odPop.create(data).then(function(response) {
+    var data = { "ID":0 };
+    odPop.remove(data).then(function(response) {
 
     },function(response){
         //on error we show it in the console.
@@ -4398,7 +4406,7 @@ app.controller("SampleController", ["odPop",function(odPop){
 
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "ID": 0 }
 ```
 
 ```json
@@ -4415,15 +4423,31 @@ app.controller("SampleController", ["odPop",function(odPop){
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":[]
+            },"ResponseBody":{ 
+                    "Count": 0, 
+                    "Items": [{
+                        "AccountID": "",
+                        "Devices": 0,
+                        "Impressions": 0,
+                        "Seconds": 0,
+                        "URL": "",
+                        "file_id": "",
+                        "id": "",
+                        "min_impressions": 0,
+                        "name": "",
+                        "time_from": "",
+                        "time_limit": "",
+                        "time_to": ""}] 
+                }
         }
 ```
 
 ```javascript
 app.controller("SampleController", ["odPop",function(odPop){ 
-    var data = {  };
-    odPop.create(data).then(function(response) {
-
+    var data = { "ID": 0 };
+    odPop.list(data).then(function(response) {
+        //list pop items
+       console.log(response.ResponseBody);
     },function(response){
         //on error we show it in the console.
         console.log(
@@ -4438,7 +4462,7 @@ app.controller("SampleController", ["odPop",function(odPop){
 
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "ID": 0, "Year": "", "Month": "" }
 ```
 
 ```json
@@ -4455,15 +4479,32 @@ app.controller("SampleController", ["odPop",function(odPop){
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":[]
+            },"ResponseBody":{ 
+                "Info": {
+                    "AccountID": "",
+                    "URL": "",
+                    "file_id": "",
+                    "id": "",
+                    "min_impressions": "",
+                    "name": "",
+                    "time_from": "",
+                    "time_limit": "",
+                    "time_to": "",
+                },"Stats": [{ 
+                    "Date": "2015-05-09",
+                    "Devices": 1,
+                    "Impressions": 4,
+                    "Time": 32 }]
+                }
         }
 ```
 
 ```javascript
 app.controller("SampleController", ["odPop",function(odPop){ 
-    var data = {  };
-    odPop.create(data).then(function(response) {
-
+    var data = { "ID": 0, "Year": "", "Month": "" };
+    odPop.stats(data).then(function(response) {
+        //pop stats
+        console.log(response.ResponseBody);
     },function(response){
         //on error we show it in the console.
         console.log(
@@ -4475,88 +4516,10 @@ app.controller("SampleController", ["odPop",function(odPop){
 ```
 
 # Wads
-## create
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odWads",function(odWads){ 
-    var data = {  };
-    odWads.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## update
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odWads",function(odWads){ 
-    var data = {  };
-    odWads.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
 ## remove
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "ID": "" }
 ```
 
 ```json
@@ -4579,7 +4542,7 @@ app.controller("SampleController", ["odWads",function(odWads){
 
 ```javascript
 app.controller("SampleController", ["odWads",function(odWads){ 
-    var data = {  };
+    var data = { "ID": "" };
     odWads.create(data).then(function(response) {
 
     },function(response){
@@ -4612,7 +4575,15 @@ app.controller("SampleController", ["odWads",function(odWads){
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":[]
+            },"ResponseBody":[{
+                    "AccountID": ""
+                    "AuthKey": ""
+                    "Create_TimeStamp": ""
+                    "Main": ""
+                    "Name": ""
+                    "Update_TimeStamp": ""
+                    "Version": ""
+                    "id": ""}]
         }
 ```
 
@@ -4620,481 +4591,8 @@ app.controller("SampleController", ["odWads",function(odWads){
 app.controller("SampleController", ["odWads",function(odWads){ 
     var data = {  };
     odWads.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-
-# Rights
-## update
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odRights",function(odRights){ 
-    var data = {  };
-    odRights.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## list
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odRights",function(odRights){ 
-    var data = {  };
-    odRights.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## values
-
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odRights",function(odRights){ 
-    var data = {  };
-    odRights.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-# Campaign
-## create
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odCampaign",function(odCampaign){ 
-    var data = {  };
-    odCampaign.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## update
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odCampaign",function(odCampaign){ 
-    var data = {  };
-    odCampaign.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## remove
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odCampaign",function(odCampaign){ 
-    var data = {  };
-    odCampaign.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## list
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odCampaign",function(odCampaign){ 
-    var data = {  };
-    odCampaign.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## copy
-
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odCampaign",function(odCampaign){ 
-    var data = {  };
-    odCampaign.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-# Questions
-## create
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odQuestions",function(odQuestions){ 
-    var data = {  };
-    odQuestions.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## update
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odQuestions",function(odQuestions){ 
-    var data = {  };
-    odQuestions.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## remove
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odQuestions",function(odQuestions){ 
-    var data = {  };
-    odQuestions.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## list
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odQuestions",function(odQuestions){ 
-    var data = {  };
-    odQuestions.create(data).then(function(response) {
-
+        //list web apps
+        console.log(response.ResponseBody);
     },function(response){
         //on error we show it in the console.
         console.log(
@@ -5109,7 +4607,7 @@ app.controller("SampleController", ["odQuestions",function(odQuestions){
 ## list
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "Action": "", "Value": "", "Start": 0, "Limit": 25 }
 ```
 
 ```json
@@ -5126,15 +4624,26 @@ app.controller("SampleController", ["odQuestions",function(odQuestions){
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":[]
+            },"ResponseBody":{ 
+                    "Count": 0, 
+                    "Items": [{
+                        "AccountID": 0
+                        "Action": ""
+                        "AdminUser": 0
+                        "SubAccountID": 0
+                        "Time": 0
+                        "Value": {}
+                        }] 
+                }
         }
 ```
 
 ```javascript
 app.controller("SampleController", ["odLog",function(odLog){ 
-    var data = {  };
-    odLog.create(data).then(function(response) {
-
+    var data = { "Action": "", "Value": "", "Start": 0, "Limit": 25 };
+    odLog.list(data).then(function(response) {
+        //list actions
+        console.log(response.ResponseBody);
     },function(response){
         //on error we show it in the console.
         console.log(
@@ -5148,7 +4657,7 @@ app.controller("SampleController", ["odLog",function(odLog){
 ## login
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "LoginError": false, "Start": 0, "Limit": 25 }
 ```
 
 ```json
@@ -5165,15 +4674,28 @@ app.controller("SampleController", ["odLog",function(odLog){
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":[]
+            },"ResponseBody":{ 
+                    "Count": 0, 
+                    "Items": [{
+                        "IP': "",
+                        "LocationCity": "",
+                        "LocationCountry": "",
+                        "LocationRegion": "",
+                        "LoginCounts": "0",
+                        "ResetTime": "0",
+                        "TimeStamp": 0,
+                        "Username": "",
+                        }] 
+                }
         }
 ```
 
 ```javascript
 app.controller("SampleController", ["odLog",function(odLog){ 
-    var data = {  };
-    odLog.create(data).then(function(response) {
-
+    var data = { "LoginError": false, "Start": 0, "Limit": 25 };
+    odLog.login(data).then(function(response) {
+        //list logs
+        console.log(response.ResponseBody);
     },function(response){
         //on error we show it in the console.
         console.log(
@@ -5188,7 +4710,12 @@ app.controller("SampleController", ["odLog",function(odLog){
 ## create
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ 
+                "Name": "", 
+                "Settings": {"FontSize":"32", "FontColor":"Black", "BackgroundColor":"none"} ,
+                "Feed": [{ "title": "", "description": "" }],
+                "AutoInsert": false
+            }
 ```
 
 ```json
@@ -5211,7 +4738,12 @@ app.controller("SampleController", ["odLog",function(odLog){
 
 ```javascript
 app.controller("SampleController", ["odFeed",function(odFeed){ 
-    var data = {  };
+    var data = { 
+                "Name": "", 
+                "Settings": {"FontSize":"32", "FontColor":"Black", "BackgroundColor":"none"} ,
+                "Feed": [{ "title": "", "description": "" }],
+                "AutoInsert": false
+            };
     odFeed.create(data).then(function(response) {
 
     },function(response){
@@ -5227,7 +4759,13 @@ app.controller("SampleController", ["odFeed",function(odFeed){
 ## update
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ 
+                "ID": 0,
+                "Name": "", 
+                "Settings": {"FontSize":"32", "FontColor":"Black", "BackgroundColor":"none"} ,
+                "Feed": [{ "title": "", "description": "" }],
+                "AutoInsert": false
+            }
 ```
 
 ```json
@@ -5250,8 +4788,14 @@ app.controller("SampleController", ["odFeed",function(odFeed){
 
 ```javascript
 app.controller("SampleController", ["odFeed",function(odFeed){ 
-    var data = {  };
-    odFeed.create(data).then(function(response) {
+    var data = { 
+                "ID": 0,
+                "Name": "", 
+                "Settings": {"FontSize":"32", "FontColor":"Black", "BackgroundColor":"none"} ,
+                "Feed": [{ "title": "", "description": "" }],
+                "AutoInsert": false
+            };
+    odFeed.update(data).then(function(response) {
 
     },function(response){
         //on error we show it in the console.
@@ -5266,7 +4810,18 @@ app.controller("SampleController", ["odFeed",function(odFeed){
 ## list
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ 
+        "ResultsStart":0,
+        "ResultsLimit":25,
+        "Filter":[
+                 { "Key": "Name",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 }
+              ]
+        }
 ```
 
 ```json
@@ -5283,15 +4838,35 @@ app.controller("SampleController", ["odFeed",function(odFeed){
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":[]
+            },"ResponseBody":{
+                "Count": 0,
+                "Items":[{
+                    "ID":"",
+                    "Name":"",
+                    "Group":[],
+                    "AutoInser":""
+                }]
+            }
         }
 ```
 
 ```javascript
 app.controller("SampleController", ["odFeed",function(odFeed){ 
-    var data = {  };
-    odFeed.create(data).then(function(response) {
-
+    var data = { 
+        "ResultsStart":0,
+        "ResultsLimit":25,
+        "Filter":[
+                 { "Key": "Name",
+                   "Selector":"and",
+                   "Operator":"=",
+                   "Sort":"ASC", 
+                   "Value":""
+                 }
+              ]
+        };
+    odFeed.list(data).then(function(response) {
+        //list feeds
+        console.log(response.ResponseBody);
     },function(response){
         //on error we show it in the console.
         console.log(
@@ -5305,7 +4880,7 @@ app.controller("SampleController", ["odFeed",function(odFeed){
 ## info
 
 ```json
-    "RequestData":{  }
+    "RequestData":{ "ID": 0 }
 ```
 
 ```json
@@ -5322,133 +4897,23 @@ app.controller("SampleController", ["odFeed",function(odFeed){
             },"ResponseHead":{
                 "Code":200,
                 "Message":"OK"
-            },"ResponseBody":[]
+            },"ResponseBody":{
+                        "ID": "",
+                        "Name": "",
+                        "Settings": {"FontSize":"32", "FontColor":"Black", "BackgroundColor":"none"} ,
+                        "Feed": [{ "title": "", "description": "" }],
+                        "AccountID": "",
+                        "Group": [],
+                        "AutoInsert": ""}
         }
 ```
 
 ```javascript
 app.controller("SampleController", ["odFeed",function(odFeed){ 
-    var data = {  };
-    odFeed.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-# Wads
-## update
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odWads",function(odWads){ 
-    var data = {  };
-    odWads.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## remove
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odWads",function(odWads){ 
-    var data = {  };
-    odWads.create(data).then(function(response) {
-
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## list
-
-```json
-    "RequestData":{  }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody":[]
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odWads",function(odWads){ 
-    var data = {  };
-    odWads.create(data).then(function(response) {
-
+    var data = { "ID": 0 };
+    odFeed.info(data).then(function(response) {
+        //get feed info
+        console.log(response.ResponseBody);
     },function(response){
         //on error we show it in the console.
         console.log(
