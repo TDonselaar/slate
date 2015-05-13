@@ -24,6 +24,127 @@ This example API documentation page was created with [Slate](http://github.com/t
 
 # Authentication
 
+# Authenticate
+## auth
+
+
+```json
+    "RequestData":{
+        "AppID": "", 
+        "Key":"" }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody": []
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
+    var data = {
+        "AppID": "", 
+        "Key":"" };
+    odAuthenticate.auth(data).then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
+## check
+
+```json
+    "RequestData":{ }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody": []
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
+    odAuthenticate.check().then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
+## logout
+
+```json
+    "RequestData":{ }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody": []
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
+    odAuthenticate.logout().then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 # Account
 ## update
 
@@ -297,82 +418,6 @@ app.controller("SampleController", ["odAccount",function(odAccount){
 }]);
 ```
 
-# Authenticate
-## check
-
-```json
-    "RequestData":{ }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody": []
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
-    odAuthenticate.check().then(function(response) {
-       
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
-
-## logout
-
-```json
-    "RequestData":{ }
-```
-
-```json
-    "Response":{ 
-            "ApiInfo":{
-                "ApiVersion":"2",
-                "ServerTime":1430387863
-            },"Session":{
-                "Token":"",
-                "UserType":"User",
-                "SubAccountID":0,
-                "AccountID":"60",
-                "UserName":"useremail@domain.com"
-            },"ResponseHead":{
-                "Code":200,
-                "Message":"OK"
-            },"ResponseBody": []
-        }
-```
-
-```javascript
-app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
-    odAuthenticate.logout().then(function(response) {
-       
-    },function(response){
-        //on error we show it in the console.
-        console.log(
-            "Code: "+response.ResponseHead.Code+
-            " Message:"+response.ResponseHead.Message
-            );
-    }); 
-}]);
-```
 
 # Application
 ## create
