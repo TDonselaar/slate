@@ -16,17 +16,50 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Open Display API doc.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+In this document we describe how to connect and run api functions.
+We currently have a angularjs sdk more sdk are in the work. 
 
 # Authentication
 
+We support two ways of authenticating, client side and server side authentication.
+
+First step is to create a new application in your account dashboard. 
+
+Create an app:
+
+-Login to your account dashboard.
+
+-Go to Apps -> Custom Apps -> plus button on the top left.
+
+-Fill in all of the fields. note. the app URL is the URL that the user is redirected once logged in we will put the auth token at the end of this URL.
+
+<b>Client side authentication.</b>
+
+<b>Flow:</b> Redirect user to the login page with the AppID or RedirectURL -> user is redirect back to the app with at the end of the url the auth token.
+
+It is up to the client side application to get the auth token and store it locally on the client's device. This way the application can use the auth token to make api request on behalf of the client. The token has a limited lifespan so when a api request fails due to that the user token is invalid (Return code: 401) restart the authentication flow.
+
+
+<b>Server side authentication.</b>
+
+<b>Flow:</b> Auth using the private key -> success server returns a token that is valid x number of seconds -> use the token to do api calls on behalf of the app owner.
+
+Once you have created an app you can press the edit icon of the app you will be shown the settings of the app and the <b>private key</b>.
+
+The <b>private key</b> is needed to do server side logins as the owner of the account in which you have created the app.
+
 # Authenticate
+
 ## auth
 
+This function is used for server side authentication you will need to send the AppID and private key to the api. 
+On server response you will receive the token. this token allows for you to make request on behalf of the client. 
+
+> https://api.open-display.io/webapi/core/Authenticate/Auth
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{
@@ -71,6 +104,11 @@ app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
 
 ## check
 
+> https://api.open-display.io/webapi/core/Authenticate/check
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
+
 ```json
     "RequestData":{ }
 ```
@@ -109,6 +147,10 @@ app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
 
 ## logout
 
+> https://api.open-display.io/webapi/core/Authenticate/Logout
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ }
 ```
@@ -146,7 +188,13 @@ app.controller("SampleController", ["odAuthenticate",function(odAuthenticate){
 ```
 
 # Account
+
 ## update
+
+> https://api.open-display.io/webapi/core/Account/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 
 ```json
     "RequestData":{
@@ -210,6 +258,10 @@ app.controller("SampleController", ["odAccount",function(odAccount){
 
 ## updatePassword
 
+> https://api.open-display.io/webapi/core/Account/UpdatePassword
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{
         "OldPassword": "",
@@ -257,6 +309,10 @@ app.controller("SampleController", ["odAccount",function(odAccount){
 ```
 
 ## info
+
+> https://api.open-display.io/webapi/core/Account/Info
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ }
@@ -342,6 +398,10 @@ app.controller("SampleController", ["odAccount",function(odAccount){
 
 ## updateSettings
 
+> https://api.open-display.io/webapi/core/Account/UpdateSettings
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "Class": "Main", "Data": {}}
 ```
@@ -378,7 +438,11 @@ app.controller("SampleController", ["odAccount",function(odAccount){
 }]);
 ```
 
-## settings
+## Settings
+
+> https://api.open-display.io/webapi/core/Account/Settings
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "Class": "Main" }
@@ -420,7 +484,12 @@ app.controller("SampleController", ["odAccount",function(odAccount){
 
 
 # Application
+
 ## create
+
+> https://api.open-display.io/webapi/core/Applications/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -468,6 +537,10 @@ app.controller("SampleController", ["odApplication",function(odApplication){
 
 ## update
 
+> https://api.open-display.io/webapi/core/Applications/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ 
         "ID": "",
@@ -514,7 +587,14 @@ app.controller("SampleController", ["odApplication",function(odApplication){
 }]);
 ```
 
+
+
+
 ## remove
+
+> https://api.open-display.io/webapi/core/Applications/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -557,6 +637,10 @@ app.controller("SampleController", ["odApplication",function(odApplication){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/Applications/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ }
@@ -607,6 +691,10 @@ app.controller("SampleController", ["odApplication",function(odApplication){
 
 ## devList
 
+> https://api.open-display.io/webapi/core/Applications/DevList
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ }
 ```
@@ -655,6 +743,10 @@ app.controller("SampleController", ["odApplication",function(odApplication){
 
 ## setGroup
 
+> https://api.open-display.io/webapi/core/Applications/SetGroup
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID": "", "Groups": [] }
 ```
@@ -695,6 +787,10 @@ app.controller("SampleController", ["odApplication",function(odApplication){
 
 ## revokeAccess
 
+> https://api.open-display.io/webapi/core/Applications/RevokeAccess
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID": "" }
 ```
@@ -732,8 +828,56 @@ app.controller("SampleController", ["odApplication",function(odApplication){
 }]);
 ```
 
+## accessLevels
+
+> https://api.open-display.io/webapi/core/Applications/AccessLevels
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
+```json
+    "RequestData":{  }
+```
+
+```json
+    "Response":{ 
+            "ApiInfo":{
+                "ApiVersion":"2",
+                "ServerTime":1430387863
+            },"Session":{
+                "Token":"",
+                "UserType":"User",
+                "SubAccountID":0,
+                "AccountID":"60",
+                "UserName":"useremail@domain.com"
+            },"ResponseHead":{
+                "Code":200,
+                "Message":"OK"
+            },"ResponseBody":[]
+        }
+```
+
+```javascript
+app.controller("SampleController", ["odApplication",function(odApplication){
+
+    odApplication.accessLevels().then(function(response) {
+       
+    },function(response){
+        //on error we show it in the console.
+        console.log(
+            "Code: "+response.ResponseHead.Code+
+            " Message:"+response.ResponseHead.Message
+            );
+    }); 
+}]);
+```
+
 # Device
+
 ## create
+
+> https://api.open-display.io/webapi/core/Devices/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -783,6 +927,10 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/Devices/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -932,6 +1080,10 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/Devices/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ 
         "ID": ""
@@ -974,6 +1126,10 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 ```
 
 ## info
+
+> https://api.open-display.io/webapi/core/Devices/Info
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -1075,6 +1231,10 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 
 ## update
 
+> https://api.open-display.io/webapi/core/Devices/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ 
         "ID": "",
@@ -1140,6 +1300,10 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 
 ## setFolder
 
+> https://api.open-display.io/webapi/core/Devices/SetFolder
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "IDS":[] }
 ```
@@ -1179,6 +1343,10 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 
 ## rebootReset
 
+> https://api.open-display.io/webapi/core/Devices/RebootReset
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "IDS":[], "Reboot": true, "Reset": true }
 ```
@@ -1217,6 +1385,10 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 ```
 
 ## updateGlobalSettings
+
+> https://api.open-display.io/webapi/core/Devices/UpdateGlobalSettings
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -1271,6 +1443,10 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 
 ## globalSettings
 
+> https://api.open-display.io/webapi/core/Devices/GlobalSettings
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{}
 ```
@@ -1319,6 +1495,10 @@ app.controller("SampleController", ["odDevice",function(odDevice){
 # DeviceFolders
 ## create
 
+> https://api.open-display.io/webapi/core/DeviceFolders/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "Name":"", "ParentID":"" }
 ```
@@ -1357,6 +1537,10 @@ app.controller("SampleController", ["odDeviceFolders",function(odDeviceFolders){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/DeviceFolders/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{  }
@@ -1408,6 +1592,10 @@ app.controller("SampleController", ["odDeviceFolders",function(odDeviceFolders){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/DeviceFolders/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID":"" }
 ```
@@ -1446,6 +1634,10 @@ app.controller("SampleController", ["odDeviceFolders",function(odDeviceFolders){
 ```
 
 ## update
+
+> https://api.open-display.io/webapi/core/DeviceFolders/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "ID":"", "Name":"", "ParentID":"" }
@@ -1486,6 +1678,10 @@ app.controller("SampleController", ["odDeviceFolders",function(odDeviceFolders){
 
 # Files
 ## list
+
+> https://api.open-display.io/webapi/core/Files/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -1642,6 +1838,10 @@ app.controller("SampleController", ["odFiles",function(odFiles){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/Files/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID":"" }
 ```
@@ -1680,6 +1880,10 @@ app.controller("SampleController", ["odFiles",function(odFiles){
 ```
 
 ## uploadURL
+
+> https://api.open-display.io/webapi/core/Files/UploadURL
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ }
@@ -1724,6 +1928,10 @@ app.controller("SampleController", ["odFiles",function(odFiles){
 # FileFolders
 ## create
 
+> https://api.open-display.io/webapi/core/FilesFolders/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{"Name": "", "PID":0 }
 ```
@@ -1763,6 +1971,10 @@ app.controller("SampleController", ["odFileFolders",function(odFileFolders){
 
 ## update
 
+> https://api.open-display.io/webapi/core/FilesFolders/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{"ID":0, "Name": "", "PID":0 }
 ```
@@ -1801,6 +2013,10 @@ app.controller("SampleController", ["odFileFolders",function(odFileFolders){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/FilesFolders/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{}
@@ -1849,6 +2065,10 @@ app.controller("SampleController", ["odFileFolders",function(odFileFolders){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/FilesFolders/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID":0 }
 ```
@@ -1888,6 +2108,10 @@ app.controller("SampleController", ["odFileFolders",function(odFileFolders){
 
 # SubUsers
 ## create
+
+> https://api.open-display.io/webapi/core/SubUsers/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -1959,6 +2183,10 @@ app.controller("SampleController", ["odSubUsers",function(odSubUsers){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/SubUsers/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -2185,6 +2413,10 @@ app.controller("SampleController", ["odSubUsers",function(odSubUsers){
 
 ## update
 
+> https://api.open-display.io/webapi/core/SubUsers/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ 
                 "ID": 0,
@@ -2258,6 +2490,10 @@ app.controller("SampleController", ["odSubUsers",function(odSubUsers){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/SubUsers/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 
 ```json
     "RequestData":{ "ID": 0 }
@@ -2297,6 +2533,10 @@ app.controller("SampleController", ["odSubUsers",function(odSubUsers){
 ```
 
 ## info
+
+> https://api.open-display.io/webapi/core/SubUsers/Info
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "ID": 0 }
@@ -2354,6 +2594,10 @@ app.controller("SampleController", ["odSubUsers",function(odSubUsers){
 
 ## updatePassword
 
+> https://api.open-display.io/webapi/core/SubUsers/UpdatePassword
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 
 ```json
     "RequestData":{ "ID": 0, "Password":"" }
@@ -2395,6 +2639,10 @@ app.controller("SampleController", ["odSubUsers",function(odSubUsers){
 # Domains
 ## create
 
+> https://api.open-display.io/webapi/core/Domains/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "Name":"" }
 ```
@@ -2433,6 +2681,10 @@ app.controller("SampleController", ["odDomains",function(odDomains){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/Domains/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -2514,6 +2766,10 @@ app.controller("SampleController", ["odDomains",function(odDomains){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/Domains/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 
 ```json
     "RequestData":{ "ID":0 }
@@ -2554,6 +2810,10 @@ app.controller("SampleController", ["odDomains",function(odDomains){
 
 ## addUserToDomain
 
+> https://api.open-display.io/webapi/core/Domains/AddUserToDomain
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 
 ```json
     "RequestData":{ "ID":0, "SubAccountID": 0 }
@@ -2593,6 +2853,10 @@ app.controller("SampleController", ["odDomains",function(odDomains){
 ```
 
 ## removeUserFromDomain
+
+> https://api.open-display.io/webapi/core/Domains/RemoveUserFromDomain
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 
 ```json
@@ -2635,6 +2899,10 @@ app.controller("SampleController", ["odDomains",function(odDomains){
 # Groups
 ## create
 
+> https://api.open-display.io/webapi/core/Groups/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "Name": "" }
 ```
@@ -2673,6 +2941,10 @@ app.controller("SampleController", ["odGroups",function(odGroups){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/Groups/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -2751,6 +3023,10 @@ app.controller("SampleController", ["odGroups",function(odGroups){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/Groups/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID": 0 }
 ```
@@ -2789,6 +3065,10 @@ app.controller("SampleController", ["odGroups",function(odGroups){
 ```
 
 ## addUserToGroup
+
+> https://api.open-display.io/webapi/core/Groups/AddUserToGroup
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "ID":0, "SubAccountID": 0 }
@@ -2829,6 +3109,10 @@ app.controller("SampleController", ["odGroups",function(odGroups){
 
 ## removeUserFromGroup
 
+> https://api.open-display.io/webapi/core/Groups/RemoveUserFromGroup
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID":0, "SubAccountID": 0 }
 ```
@@ -2867,6 +3151,10 @@ app.controller("SampleController", ["odGroups",function(odGroups){
 ```
 
 ## updateItem
+
+> https://api.open-display.io/webapi/core/Groups/UpdateItem
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "Type": "", "Items":[], "Groups":[] }
@@ -2908,6 +3196,10 @@ app.controller("SampleController", ["odGroups",function(odGroups){
 
 # Playlist
 ## create
+
+> https://api.open-display.io/webapi/core/Playlist/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -2995,6 +3287,10 @@ app.controller("SampleController", ["odPlaylist",function(odPlaylist){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/Playlist/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -3148,6 +3444,10 @@ app.controller("SampleController", ["odPlaylist",function(odPlaylist){
 
 ## listByDevice
 
+> https://api.open-display.io/webapi/core/Playlist/ListByDevice
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "Devices": [] }
 ```
@@ -3218,6 +3518,10 @@ app.controller("SampleController", ["odPlaylist",function(odPlaylist){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/Playlist/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 
 ```json
     "RequestData":{ "ID": 0, "GID": 0 }
@@ -3258,6 +3562,9 @@ app.controller("SampleController", ["odPlaylist",function(odPlaylist){
 
 ## update
 
+> https://api.open-display.io/webapi/core/Playlist/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -3348,6 +3655,9 @@ app.controller("SampleController", ["odPlaylist",function(odPlaylist){
 
 ## info
 
+> https://api.open-display.io/webapi/core/Playlist/Info
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "ID": 0, "GID": 0  }
@@ -3418,6 +3728,10 @@ app.controller("SampleController", ["odPlaylist",function(odPlaylist){
 
 ## link
 
+> https://api.open-display.io/webapi/core/Playlist/Link
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID": 0, "Devices": [] }
 ```
@@ -3457,6 +3771,9 @@ app.controller("SampleController", ["odPlaylist",function(odPlaylist){
 
 ## unLink
 
+> https://api.open-display.io/webapi/core/Playlist/UnLink
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "ID": 0, "Devices": [] }
@@ -3498,6 +3815,10 @@ app.controller("SampleController", ["odPlaylist",function(odPlaylist){
 # Tags
 ## create
 
+> https://api.open-display.io/webapi/core/Tag/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 
 ```json
     "RequestData":{ "Name": "" }
@@ -3538,6 +3859,10 @@ app.controller("SampleController", ["odTag",function(odTag){
 
 ## update
 
+> https://api.open-display.io/webapi/core/Tag/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID": "",  "Name": "" }
 ```
@@ -3576,6 +3901,10 @@ app.controller("SampleController", ["odTag",function(odTag){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/Tag/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -3643,6 +3972,10 @@ app.controller("SampleController", ["odTag",function(odTag){
 # Slide
 ## create
 
+> https://api.open-display.io/webapi/core/Slide/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 
 ```json
     "RequestData":{ "Name": "", "DID": 0, "Width": 1280,  "Height": 720 }
@@ -3682,6 +4015,10 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/Slide/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 
 ```json
@@ -3789,6 +4126,10 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/Slide/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID": 0 }
 ```
@@ -3828,6 +4169,10 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 
 ## update
 
+> https://api.open-display.io/webapi/core/Slide/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{  "ID": 0, "Name": "", "DID": 0, "HTML": "" }
 ```
@@ -3866,6 +4211,10 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 ```
 
 ## get
+
+> https://api.open-display.io/webapi/core/Slide/Get
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "ID": 0, "ResizeWidth": 0, "ResizeHeight":0 }
@@ -3918,7 +4267,14 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 }]);
 ```
 
+
+
+
 ## resolutions
+
+> https://api.open-display.io/webapi/core/Slide/Resolutions
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{  }
@@ -3958,7 +4314,13 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 }]);
 ```
 
+
+
 ## setDir
+
+> https://api.open-display.io/webapi/core/Slide/SetDir
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "IDS": [], "DID": 0 }
@@ -3997,7 +4359,14 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 }]);
 ```
 
+
+
+
 ## send
+
+> https://api.open-display.io/webapi/core/Slide/Send
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "ID": "", "UserName": "" }
@@ -4036,8 +4405,14 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 }]);
 ```
 
+
+
+
 ## getSent
 
+> https://api.open-display.io/webapi/core/Slide/GetSent
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{  }
@@ -4086,6 +4461,10 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 
 ## removeSent
 
+> https://api.open-display.io/webapi/core/Slide/RemoveSent
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID": 0, "AccountID": 0 }
 ```
@@ -4124,6 +4503,10 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 ```
 
 ## importSent
+
+> https://api.open-display.io/webapi/core/Slide/Import
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 
 ```json
@@ -4166,6 +4549,10 @@ app.controller("SampleController", ["odSlide",function(odSlide){
 # SlideFolders
 ## create
 
+> https://api.open-display.io/webapi/core/SlideFolders/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ Name": "", "PID":0  }
 ```
@@ -4203,7 +4590,13 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 }]);
 ```
 
+
+
 ## update
+
+> https://api.open-display.io/webapi/core/SlideFolders/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "ID":0, "Name": "", "PID":0 }
@@ -4242,7 +4635,14 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 }]);
 ```
 
+
+
+
 ## list
+
+> https://api.open-display.io/webapi/core/SlideFolders/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{  }
@@ -4291,6 +4691,10 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 
 ## remove
 
+> https://api.open-display.io/webapi/core/SlideFolders/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 
 ```json
     "RequestData":{ "ID":0 }
@@ -4332,6 +4736,10 @@ app.controller("SampleController", ["odSlideFolders",function(odSlideFolders){
 # Pop
 ## create
 
+> https://api.open-display.io/webapi/pop/Campaign/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "Name": "", "FileID": 0, "MinImpressions":0, "TimeLimit": false, "TimeFrom": 0, "TimeTo": 0 }
 ```
@@ -4370,6 +4778,10 @@ app.controller("SampleController", ["odPop",function(odPop){
 ```
 
 ## update
+
+> https://api.open-display.io/webapi/pop/Campaign/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "ID":0, "Name": "", "MinImpressions":0, "TimeLimit": false, "TimeFrom": 0, "TimeTo": 0 }
@@ -4410,6 +4822,10 @@ app.controller("SampleController", ["odPop",function(odPop){
 
 ## remove
 
+> https://api.open-display.io/webapi/pop/Campaign/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID":0 }
 ```
@@ -4448,6 +4864,9 @@ app.controller("SampleController", ["odPop",function(odPop){
 ```
 
 ## list
+> https://api.open-display.io/webapi/pop/Campaign/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 
 ```json
@@ -4504,6 +4923,10 @@ app.controller("SampleController", ["odPop",function(odPop){
 ```
 
 ## stats
+
+> https://api.open-display.io/webapi/pop/Campaign/Stats
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 
 ```json
@@ -4563,6 +4986,10 @@ app.controller("SampleController", ["odPop",function(odPop){
 # Wads
 ## remove
 
+> https://api.open-display.io/webapi/wads/WADS/Remove
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID": "" }
 ```
@@ -4601,6 +5028,10 @@ app.controller("SampleController", ["odWads",function(odWads){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/wads/WADS/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{  }
@@ -4651,6 +5082,10 @@ app.controller("SampleController", ["odWads",function(odWads){
 # Log
 ## list
 
+> https://api.open-display.io/webapi/core/Log/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "Action": "", "Value": "", "Start": 0, "Limit": 25 }
 ```
@@ -4700,6 +5135,10 @@ app.controller("SampleController", ["odLog",function(odLog){
 ```
 
 ## login
+
+> https://api.open-display.io/webapi/core/Log/Login
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ "LoginError": false, "Start": 0, "Limit": 25 }
@@ -4754,6 +5193,10 @@ app.controller("SampleController", ["odLog",function(odLog){
 # Feed
 ## create
 
+> https://api.open-display.io/webapi/core/Feed/New
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ 
                 "Name": "", 
@@ -4802,6 +5245,10 @@ app.controller("SampleController", ["odFeed",function(odFeed){
 ```
 
 ## update
+
+> https://api.open-display.io/webapi/core/Feed/Update
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -4853,6 +5300,10 @@ app.controller("SampleController", ["odFeed",function(odFeed){
 ```
 
 ## list
+
+> https://api.open-display.io/webapi/core/Feed/List
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
 
 ```json
     "RequestData":{ 
@@ -4924,6 +5375,10 @@ app.controller("SampleController", ["odFeed",function(odFeed){
 
 ## info
 
+> https://api.open-display.io/webapi/core/Feed/Info
+
+> POST VARS: Token: {Token id}, RequestData: {json string}
+
 ```json
     "RequestData":{ "ID": 0 }
 ```
@@ -4968,3 +5423,4 @@ app.controller("SampleController", ["odFeed",function(odFeed){
     }); 
 }]);
 ```
+
